@@ -2,12 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Dashboard</title>
 </head>
 <body>
-    <h1>Admin Dashboard</h1>
-    <img src="{{ url_for('static', filename='sales_chart.png') }}" alt="Sales Chart">
+    <h1>Welcome {{ username }}!</h1>
+    <p>Your role: {{ role }}</p>
+    {% if role == 'admin' %}
+        <a href="/admin">Admin Dashboard</a><br>
+        <a href="/add_user">Add User</a><br>
+        <a href="/view_users">View Users</a><br>
+        <a href="/inventory">Manage Inventory</a>
+    {% elif role == 'employee' %}
+        <a href="/inventory">View Inventory</a>
+    {% elif role == 'reseller' %}
+        <a href="/inventory">View Inventory</a>
+    {% endif %}
+    <a href="/logout">Logout</a>
 </body>
 </html>
